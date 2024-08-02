@@ -29,7 +29,7 @@ app.use(express.json());
 
 app.post("/getUserInfo", (req, res) => {
   const { qrData } = req.body;
-  const query = "SELECT * FROM registrations WHERE `UPI_Ref_No` = ?";
+  const query = "SELECT * FROM data WHERE `UPI_Ref_No` = ?";
   connection.query(query, [qrData], (error, results) => {
     if (error) {
       console.error("Database query error:", error);
@@ -62,8 +62,7 @@ app.post("/getUserInfo", (req, res) => {
 
 app.post("/checkInUser", (req, res) => {
   const { qrData } = req.body;
-  const query =
-    "UPDATE registrations SET Checked_In = 1 WHERE `UPI_Ref_No` = ?";
+  const query = "UPDATE data SET Checked_In = 1 WHERE `UPI_Ref_No` = ?";
   connection.query(query, [qrData], (error, results) => {
     if (error) {
       console.error("Database query error:", error);
